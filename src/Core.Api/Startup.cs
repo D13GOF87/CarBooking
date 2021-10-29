@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Persistence.Database;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,8 @@ namespace Core.Api
 				opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
 			);
 
+			services.AddTransient<ICategoriaVehiculoService, CategoriaVehiculoService>();
+			services.AddAutoMapper(typeof(Startup));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
