@@ -10,7 +10,7 @@ using Persistence.Database;
 namespace Persistence.Database.Migrations
 {
     [DbContext(typeof(AplicacionDbContext))]
-    [Migration("20211029040601_Inicial")]
+    [Migration("20211029044032_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,9 +48,6 @@ namespace Persistence.Database.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoriaVehiculoIdCategoriaVehiculo")
-                        .HasColumnType("int");
-
                     b.Property<int>("EstadoTipoVehiculo")
                         .HasColumnType("int");
 
@@ -64,7 +61,7 @@ namespace Persistence.Database.Migrations
 
                     b.HasKey("IdTipoVehiculo");
 
-                    b.HasIndex("CategoriaVehiculoIdCategoriaVehiculo");
+                    b.HasIndex("IdCategoriaVehiculo");
 
                     b.ToTable("TiposVehiculo");
                 });
@@ -72,15 +69,15 @@ namespace Persistence.Database.Migrations
             modelBuilder.Entity("Model.TipoVehiculo", b =>
                 {
                     b.HasOne("Model.CategoriaVehiculo", "CategoriaVehiculo")
-                        .WithMany("TipoVehiculos")
-                        .HasForeignKey("CategoriaVehiculoIdCategoriaVehiculo");
+                        .WithMany("TipoVehiculo")
+                        .HasForeignKey("IdCategoriaVehiculo");
 
                     b.Navigation("CategoriaVehiculo");
                 });
 
             modelBuilder.Entity("Model.CategoriaVehiculo", b =>
                 {
-                    b.Navigation("TipoVehiculos");
+                    b.Navigation("TipoVehiculo");
                 });
 #pragma warning restore 612, 618
         }

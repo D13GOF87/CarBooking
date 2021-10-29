@@ -28,15 +28,14 @@ namespace Persistence.Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NombreTipo = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     EstadoTipoVehiculo = table.Column<int>(type: "int", nullable: false),
-                    IdCategoriaVehiculo = table.Column<int>(type: "int", nullable: false),
-                    CategoriaVehiculoIdCategoriaVehiculo = table.Column<int>(type: "int", nullable: true)
+                    IdCategoriaVehiculo = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TiposVehiculo", x => x.IdTipoVehiculo);
                     table.ForeignKey(
                         name: "FK_TiposVehiculo_CategoriasVehiculo_CategoriaVehiculoIdCategoriaVehiculo",
-                        column: x => x.CategoriaVehiculoIdCategoriaVehiculo,
+                        column: x => x.IdCategoriaVehiculo,
                         principalTable: "CategoriasVehiculo",
                         principalColumn: "IdCategoriaVehiculo",
                         onDelete: ReferentialAction.Restrict);
@@ -45,7 +44,7 @@ namespace Persistence.Database.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_TiposVehiculo_CategoriaVehiculoIdCategoriaVehiculo",
                 table: "TiposVehiculo",
-                column: "CategoriaVehiculoIdCategoriaVehiculo");
+                column: "IdCategoriaVehiculo");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

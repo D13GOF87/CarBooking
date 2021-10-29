@@ -11,6 +11,6 @@ namespace Model
 
 		public int EstadoCategoriaVehiculo { get; set; }
 
-		public ICollection<TipoVehiculo> TipoVehiculos { get; set; }
+		public ICollection<TipoVehiculo> TipoVehiculo { get; set; }
 	}
 }
