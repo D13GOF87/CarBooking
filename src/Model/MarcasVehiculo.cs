@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-
+﻿
 namespace Model
 {
-    class MarcasVehiculo
+    public class MarcasVehiculo
     {
-        public int IdMarcas { get; set; }
-        public string NombreMarca { get; set; }
+        public int IdMarcaVehiculo { get; set; }
+        public string NombreMarcaVehiculo { get; set; }
+        public int EstadoMarcaVehiculo { get; set; }
 
         //aqui va la conexion con vehiculos
     }

@@ -16,6 +16,9 @@ namespace Persistence.Database
 
 		public DbSet<TipoVehiculo> TiposVehiculo { get; set; }
 
+		public DbSet<ColoresVehiculo> ColoresVehiculo { get; set; }
+		public DbSet<MarcasVehiculo> MarcasVehiculo { get; set; }
+
 		//Sobrecargo el metodo para la creación de las entidades
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
@@ -24,6 +27,8 @@ namespace Persistence.Database
 			//Llamo a las configuraciones creadas previamnete en Config de la persistencia
 			new CategoriaVehiculoConfig(builder.Entity<CategoriaVehiculo>());
 			new TipoVehiculoConfig(builder.Entity<TipoVehiculo>());
+			new ColoresVehiculoConfig(builder.Entity<ColoresVehiculo>());
+			new MarcasVehiculoConfig(builder.Entity<MarcasVehiculo>());
 		}
 	}
 }
