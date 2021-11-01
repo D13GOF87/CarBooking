@@ -6,13 +6,11 @@ using System.Text;
 
 namespace Model
 {
-    class ModeloColores
+    class MarcasVehiculo
     {
-        public int IdColor { get; set; }
-        [Required]
-        [Column(TypeName = "varchar(20)")]
-        public string NombreColor { get; set; }
-s
+        public int IdMarcas { get; set; }
+        public string NombreMarca { get; set; }
+
         //aqui va la conexion con vehiculos
     }
 }
