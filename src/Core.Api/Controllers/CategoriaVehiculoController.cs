@@ -42,5 +42,12 @@ namespace Core.Api.Controllers
 			await _categoriaVehiculoService.Actualizar(id, modelo);
 			return NoContent();
 		}
+
+		[HttpPut("{id}")]
+		public async Task<ActionResult> Desactivar(int id)
+		{
+			await _categoriaVehiculoService.Desactivar(id);
+			return NoContent();
+		}
 	}
 }
