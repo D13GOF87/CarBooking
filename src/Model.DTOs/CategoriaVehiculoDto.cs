@@ -25,4 +25,9 @@ namespace Model.DTOs
 
 		public int EstadoCategoriaVehiculo { get; set; }
 	}
+
+	public class DesactivarCategoriaVehiculoDto
+	{
+		public int EstadoCategoriaVehiculo { get; set; }
+	}
 }

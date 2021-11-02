@@ -14,6 +14,8 @@ namespace Service
 		Task<CategoriaVehiculoDto> Crear(CrearCategoriaVehiculoDto modelo);
 
 		Task Actualizar(int id, ActualizarCategoriaVehiculoDto modelo);
+
+		Task Desactivar(int id);
 	}
 
 	public class CategoriaVehiculoService : ICategoriaVehiculoService
@@ -57,6 +59,13 @@ namespace Service
 
 			entry.NombreCategoria = modelo.NombreCategoria;
 			entry.EstadoCategoriaVehiculo = modelo.EstadoCategoriaVehiculo;
+			await _contexto.SaveChangesAsync();
+		}
+
+		public async Task Desactivar(int id)
+		{
+			var entry = await _contexto.CategoriasVehiculo.SingleAsync(x => x.IdCategoriaVehiculo == id);
+			entry.EstadoCategoriaVehiculo = 0;
 			await _contexto.SaveChangesAsync();
 		}
 	}
