@@ -9,6 +9,8 @@ namespace Core.Api.Config
 		public AutoMapperConfig()
 		{
 			CreateMap<CategoriaVehiculo, CategoriaVehiculoDto>();
+			CreateMap<ColoresVehiculo, ColoresVehiculoDto>();
+			CreateMap<MarcasVehiculo, MarcasVehiculoDto>();
 		}
 	}
 }

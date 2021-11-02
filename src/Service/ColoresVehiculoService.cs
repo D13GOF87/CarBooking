@@ -47,8 +47,10 @@ namespace Service
         public async Task Actualizar(int id, ActualizarColoresVehiculoDto modelo)
         {
             var entry = await _contexto.ColoresVehiculo.SingleAsync(x => x.IdColorVehiculo == id);
+            
             entry.NombreColorVehiculo = modelo.NombreColorVehiculo;
             entry.EstadoColorVehiculo = modelo.EstadoColorVehiculo;
+            
             await _contexto.SaveChangesAsync();
         }
 
