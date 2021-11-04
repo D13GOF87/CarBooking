@@ -3,12 +3,20 @@ using Microsoft.EntityFrameworkCore;
 using Model;
 using Model.DTOs;
 using Persistence.Database;
+using Service.Commons;
+using Service.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Service
 {
 	public interface ICategoriaVehiculoService 
 	{
+
+		Task<DataCollection<CategoriaVehiculoDto>> GetAll(int page, int take);
+
 		Task<CategoriaVehiculoDto> GetById(int id);
 
 		Task<CategoriaVehiculoDto> Crear(CrearCategoriaVehiculoDto modelo);
@@ -30,6 +38,16 @@ namespace Service
 		{
 			_contexto = contexto;
 			_mapper = mapper;
+		}
+
+		public async Task<DataCollection<CategoriaVehiculoDto>> GetAll(int page, int take)
+		{
+			return _mapper.Map<DataCollection<CategoriaVehiculoDto>>(
+				await _contexto.CategoriasVehiculo
+					.OrderByDescending(x => x.IdCategoriaVehiculo)
+					.AsQueryable()
+					.PagedAsync(page, take)
+			);
 		}
 
 		public async Task<CategoriaVehiculoDto> GetById(int id)

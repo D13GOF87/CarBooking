@@ -2,6 +2,7 @@
 using Model;
 using Model.DTOs;
 using Service;
+using Service.Commons;
 using System.Threading.Tasks;
 
 namespace Core.Api.Controllers
@@ -15,6 +16,12 @@ namespace Core.Api.Controllers
 		public CategoriaVehiculoController(ICategoriaVehiculoService categoriaVehiculoService)
 		{
 			_categoriaVehiculoService = categoriaVehiculoService;
+		}
+
+		[HttpGet]
+		public async Task<ActionResult<DataCollection<CategoriaVehiculoDto>>> GetAll(int page, int take = 20)
+		{
+			return await _categoriaVehiculoService.GetAll(page, take);
 		}
 
 		// Ex: categoriasVehiculo/1

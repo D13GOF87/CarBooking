@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Model;
 using Model.DTOs;
+using Service.Commons;
 
 namespace Core.Api.Config
 {
@@ -11,6 +12,8 @@ namespace Core.Api.Config
 			CreateMap<CategoriaVehiculo, CategoriaVehiculoDto>();
 			CreateMap<ColoresVehiculo, ColoresVehiculoDto>();
 			CreateMap<MarcasVehiculo, MarcasVehiculoDto>();
+
+			CreateMap<DataCollection<CategoriaVehiculo>, DataCollection<CategoriaVehiculoDto>>();
 		}
 	}
 }

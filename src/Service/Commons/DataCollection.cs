@@ -5,6 +5,7 @@ namespace Service.Commons
 {
 	public class DataCollection<T> where T : class
 	{
+		//valida si encuentra items.
 		public bool HasItems
 		{
 			get
