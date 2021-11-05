@@ -15,7 +15,7 @@ namespace Service
 	{
 		Task<DataCollection<TipoVehiculoDto>> GetAll(int page, int take);
 
-		Task<DataCollection<TipoVehiculoDto>> GetById(int id);
+		Task<TipoVehiculoDto> GetById(int id);
 
 		Task<TipoVehiculoDto> Crear(CrearTipoVehiculoDto modelo);
 	}
@@ -37,16 +37,16 @@ namespace Service
 		public async Task<DataCollection<TipoVehiculoDto>> GetAll(int page, int take)
 		{
 			return _mapper.Map<DataCollection<TipoVehiculoDto>>(
-				await _contexto.TiposVehiculo.OrderByDescending(x => x.IdTipoVehiculo)
+				await _contexto.TiposVehiculo.OrderBy(x => x.IdTipoVehiculo)
 									.Include(x => x.CategoriaVehiculo)
 									.AsQueryable()
 									.PagedAsync(page, take)
 			);
 		}
 
-		public async Task<DataCollection<TipoVehiculoDto>> GetById(int id)
+		public async Task<TipoVehiculoDto> GetById(int id)
 		{
-			return _mapper.Map<DataCollection<TipoVehiculoDto>>(
+			return _mapper.Map<TipoVehiculoDto>(
 				await _contexto.TiposVehiculo.OrderBy(x => x.IdTipoVehiculo)
 									.Include(x => x.CategoriaVehiculo)
 									.AsQueryable()
@@ -66,7 +66,9 @@ namespace Service
 			await _contexto.AddAsync(entry);
 			await _contexto.SaveChangesAsync();
 
-			return _mapper.Map<TipoVehiculoDto>(entry);
+			return _mapper.Map<TipoVehiculoDto>(
+				await GetById(entry.IdTipoVehiculo)
+			);
 
 		}
 	}
