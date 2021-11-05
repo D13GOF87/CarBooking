@@ -19,6 +19,26 @@ namespace Persistence.Database.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Model.Agencias", b =>
+                {
+                    b.Property<int>("IdAgencia")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EstadoAgencia")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreAgencia")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("IdAgencia");
+
+                    b.ToTable("Agencias");
+                });
+
             modelBuilder.Entity("Model.CategoriaVehiculo", b =>
                 {
                     b.Property<int>("IdCategoriaVehiculo")
@@ -37,6 +57,51 @@ namespace Persistence.Database.Migrations
                     b.HasKey("IdCategoriaVehiculo");
 
                     b.ToTable("CategoriasVehiculo");
+                });
+
+            modelBuilder.Entity("Model.Clientes", b =>
+                {
+                    b.Property<int>("IdCliente")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApellidosCliente")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<int>("EstadoCliente")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Identifacion")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("NombresCliente")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("IdCliente");
+
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("Model.ColoresVehiculo", b =>
