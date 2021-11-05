@@ -30,7 +30,7 @@ namespace Core.Api.Controllers
 
 		//Ex: TiposVehiculo/1
 		[HttpGet("{id}")]
-		public async Task<ActionResult<DataCollection<TipoVehiculoDto>>> GetById(int id)
+		public async Task<ActionResult<TipoVehiculoDto>> GetById(int id)
 		{
 			return await _tipoVehicleService.GetById(id);
 		}
