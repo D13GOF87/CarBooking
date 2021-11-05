@@ -39,12 +39,55 @@ namespace Persistence.Database.Migrations
                     b.ToTable("CategoriasVehiculo");
                 });
 
+            modelBuilder.Entity("Model.ColoresVehiculo", b =>
+                {
+                    b.Property<int>("IdColorVehiculo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EstadoColorVehiculo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreColorVehiculo")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("IdColorVehiculo");
+
+                    b.ToTable("ColoresVehiculo");
+                });
+
+            modelBuilder.Entity("Model.MarcasVehiculo", b =>
+                {
+                    b.Property<int>("IdMarcaVehiculo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EstadoMarcaVehiculo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreMarcaVehiculo")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("IdMarcaVehiculo");
+
+                    b.ToTable("MarcasVehiculo");
+                });
+
             modelBuilder.Entity("Model.TipoVehiculo", b =>
                 {
                     b.Property<int>("IdTipoVehiculo")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CategoriaVehiculoIdCategoriaVehiculo")
+                        .HasColumnType("int");
 
                     b.Property<int>("EstadoTipoVehiculo")
                         .HasColumnType("int");
@@ -59,7 +102,7 @@ namespace Persistence.Database.Migrations
 
                     b.HasKey("IdTipoVehiculo");
 
-                    b.HasIndex("IdCategoriaVehiculo");
+                    b.HasIndex("CategoriaVehiculoIdCategoriaVehiculo");
 
                     b.ToTable("TiposVehiculo");
                 });
@@ -68,7 +111,7 @@ namespace Persistence.Database.Migrations
                 {
                     b.HasOne("Model.CategoriaVehiculo", "CategoriaVehiculo")
                         .WithMany("TipoVehiculo")
-                        .HasForeignKey("IdCategoriaVehiculo");
+                        .HasForeignKey("CategoriaVehiculoIdCategoriaVehiculo");
 
                     b.Navigation("CategoriaVehiculo");
                 });
