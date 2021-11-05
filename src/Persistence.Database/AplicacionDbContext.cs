@@ -20,6 +20,8 @@ namespace Persistence.Database
 		public DbSet<MarcasVehiculo> MarcasVehiculo { get; set; }
 		public DbSet<Agencias> Agencias { get; set; }
 		public DbSet<Clientes> Clientes { get; set; }
+
+
 		//Sobrecargo el metodo para la creación de las entidades
 		protected override void OnModelCreating(ModelBuilder builder)
 		{

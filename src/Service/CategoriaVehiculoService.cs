@@ -5,8 +5,6 @@ using Model.DTOs;
 using Persistence.Database;
 using Service.Commons;
 using Service.Extensions;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -44,7 +42,7 @@ namespace Service
 		{
 			return _mapper.Map<DataCollection<CategoriaVehiculoDto>>(
 				await _contexto.CategoriasVehiculo
-					.OrderByDescending(x => x.IdCategoriaVehiculo)
+					.OrderBy(x => x.IdCategoriaVehiculo)
 					.AsQueryable()
 					.PagedAsync(page, take)
 			);

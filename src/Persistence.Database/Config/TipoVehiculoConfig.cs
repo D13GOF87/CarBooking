@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Model;
 
@@ -12,6 +13,10 @@ namespace Persistence.Database.Config
 			entityBuilder.Property(x => x.IdTipoVehiculo)
 				.IsRequired()
 				.ValueGeneratedOnAdd();
+			entityBuilder.HasOne(x => x.CategoriaVehiculo)
+				.WithMany(x => x.TiposVehiculos)
+				.HasForeignKey(x => x.IdCategoriaVehiculo)
+				.IsRequired();				
 			entityBuilder.Property(x => x.NombreTipo)
 				.HasMaxLength(20)
 				.IsRequired();

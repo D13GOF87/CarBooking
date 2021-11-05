@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Model;
 using Model.DTOs;
 using Service;
 using Service.Commons;
@@ -50,7 +49,7 @@ namespace Core.Api.Controllers
 			return NoContent();
 		}
 
-		[HttpPut("{id}")]
+		[HttpDelete("{id}")]
 		public async Task<ActionResult> Desactivar(int id)
 		{
 			await _categoriaVehiculoService.Desactivar(id);

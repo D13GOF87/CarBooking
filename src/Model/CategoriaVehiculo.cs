@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Model
 {
@@ -11,6 +10,6 @@ namespace Model
 
 		public int EstadoCategoriaVehiculo { get; set; }
 
-		public ICollection<TipoVehiculo> TipoVehiculo { get; set; }
+		public ICollection<TipoVehiculo> TiposVehiculos { get; set; }
 	}
 }

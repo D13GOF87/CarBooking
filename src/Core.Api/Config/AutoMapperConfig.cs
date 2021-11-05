@@ -9,13 +9,17 @@ namespace Core.Api.Config
 	{
 		public AutoMapperConfig()
 		{
+			//Mapeos para clases a Clases DTOs
 			CreateMap<CategoriaVehiculo, CategoriaVehiculoDto>();
+			CreateMap<TipoVehiculo, TipoVehiculoDto>();
 			CreateMap<ColoresVehiculo, ColoresVehiculoDto>();
 			CreateMap<MarcasVehiculo, MarcasVehiculoDto>();
 			CreateMap<Agencias, AgenciasDto>();
 			CreateMap<Clientes, ClienteDto>();
 
+			//Mapeos para paginación
 			CreateMap<DataCollection<CategoriaVehiculo>, DataCollection<CategoriaVehiculoDto>>();
+			CreateMap<DataCollection<TipoVehiculo>, DataCollection<TipoVehiculoDto>>();			
 		}
 	}
 }

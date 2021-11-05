@@ -32,7 +32,10 @@ namespace Core.Api
 				opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
 			);
 
+			//Uso de los servicios
 			services.AddTransient<ICategoriaVehiculoService, CategoriaVehiculoService>();
+			services.AddTransient<ITipoVehiculoService, TipoVehiculoService>();
+
 			services.AddAutoMapper(typeof(Startup));
 		}
 
