@@ -35,6 +35,10 @@ namespace Core.Api
 			//Uso de los servicios
 			services.AddTransient<ICategoriaVehiculoService, CategoriaVehiculoService>();
 			services.AddTransient<ITipoVehiculoService, TipoVehiculoService>();
+			services.AddTransient<IColoresVehiculoService, ColoresVehiculoService>();
+			services.AddTransient<IMarcasVehiculoService, MarcasVehiculoService>();
+			services.AddTransient<IAgenciasService, AgenciasService>();
+			services.AddTransient<IClientesService, ClientesService>();
 
 			services.AddAutoMapper(typeof(Startup));
 		}
