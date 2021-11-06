@@ -18,6 +18,10 @@ namespace Service
 		Task<TipoVehiculoDto> GetById(int id);
 
 		Task<TipoVehiculoDto> Crear(CrearTipoVehiculoDto modelo);
+
+		Task Actualizar(int id, ActulizarTipoVehiculoDto modelo);
+
+		Task Desactivar(int id);
 	}
 
 	public class TipoVehiculoService : ITipoVehiculoService
@@ -69,6 +73,24 @@ namespace Service
 			return _mapper.Map<TipoVehiculoDto>(
 				await GetById(entry.IdTipoVehiculo)
 			);
+		}
+
+		public async Task Actualizar(int id, ActulizarTipoVehiculoDto modelo)
+		{
+			var entry = await _contexto.TiposVehiculo.SingleAsync(x => x.IdTipoVehiculo == id);
+			
+			entry.IdCategoriaVehiculo = modelo.IdCategoriaVehiculo;
+			entry.NombreTipo = modelo.NombreTipo;
+			entry.EstadoTipoVehiculo = modelo.EstadoTipoVehiculo;
+
+			await _contexto.SaveChangesAsync();
+		}
+
+		public async Task Desactivar(int id)
+		{
+			var entry = await _contexto.TiposVehiculo.SingleAsync(x => x.IdTipoVehiculo == id);
+			entry.EstadoTipoVehiculo = 0;
+			await _contexto.SaveChangesAsync();
 
 		}
 	}

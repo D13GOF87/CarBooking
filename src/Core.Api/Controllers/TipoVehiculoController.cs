@@ -46,5 +46,19 @@ namespace Core.Api.Controllers
 				result
 			);
 		}
+
+		[HttpPut("{id}")]
+		public async Task<ActionResult> Actualizar(int id, ActulizarTipoVehiculoDto modelo)
+		{
+			await _tipoVehicleService.Actualizar(id, modelo);
+			return NoContent();
+		}
+
+		[HttpDelete("{id}")]
+		public async Task<ActionResult> Desactivar(int id)
+		{
+			await _tipoVehicleService.Desactivar(id);
+			return NoContent();
+		}
 	}
 }
