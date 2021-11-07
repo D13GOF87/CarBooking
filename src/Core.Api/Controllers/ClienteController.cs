@@ -10,10 +10,12 @@ namespace Core.Api.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly IClientesService _clientesService;
+     
         public ClienteController(IClientesService clientes)
         {
             _clientesService = clientes;
         }
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<ClienteDto>> GetById(int id)
         {

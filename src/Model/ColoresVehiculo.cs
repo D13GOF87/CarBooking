@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace Model
 {
     public class ColoresVehiculo
@@ -9,5 +10,6 @@ namespace Model
         public int EstadoColorVehiculo { get; set; }
 
         //aqui va la conexion con vehiculos
+        public ICollection<Vehiculo> Vehiculos { get; set; }
     }
 }

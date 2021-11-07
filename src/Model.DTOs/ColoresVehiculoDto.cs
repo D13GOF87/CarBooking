@@ -21,5 +21,8 @@ namespace Model.DTOs
         public string NombreColorVehiculo { get; set; }
         public int EstadoColorVehiculo { get; set; }
     }
-
+    public class DesactivarColoresVehiculoDto
+    {
+        public int EstadoColorVehiculo { get; set; }
+    }
 }

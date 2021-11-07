@@ -39,6 +39,7 @@ namespace Core.Api
 			services.AddTransient<IColoresVehiculoService, ColoresVehiculoService>();
 			services.AddTransient<IMarcasVehiculoService, MarcasVehiculoService>();
 			services.AddTransient<IClientesService, ClientesService>();
+			services.AddTransient<IVehiculoService, VehiculoService>();
 
 		
 

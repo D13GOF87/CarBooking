@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace Model
 {
 	public class TipoVehiculo
@@ -11,5 +12,8 @@ namespace Model
 
 		public int IdCategoriaVehiculo { get; set; }
 		public CategoriaVehiculo CategoriaVehiculo { get; set; }
+		//fk
+
+		public ICollection<Vehiculo> Vehiculos { get; set; }
 	}
 }

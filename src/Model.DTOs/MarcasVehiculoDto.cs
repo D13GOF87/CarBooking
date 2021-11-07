@@ -22,4 +22,9 @@ namespace Model.DTOs
         public string NombreMarcaVehiculo { get; set; }
         public int EstadoMarcaVehiculo { get; set; }
     }
+
+    public class DesactivarMarcaVehiculoDto
+    {
+        public int EstadoMarcaVehiculo { get; set; }
+    }
 }

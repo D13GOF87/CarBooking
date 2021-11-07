@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Model.DTOs;
 using Service;
+using Service.Commons;
 using System.Threading.Tasks;
 
 namespace Core.Api.Controllers
@@ -14,6 +15,12 @@ namespace Core.Api.Controllers
         public ColoresVehiculoController(IColoresVehiculoService coloresVehiculo)
         {
             _coloresVehiculoService = coloresVehiculo;
+        }
+        
+        [HttpGet]
+        public async Task<ActionResult<DataCollection<ColoresVehiculoDto>>> GetAll(int page, int take = 20)
+        {
+            return await _coloresVehiculoService.GetAll(page, take);
         }
 
         [HttpGet("{id}")]
@@ -36,6 +43,13 @@ namespace Core.Api.Controllers
         public async Task<ActionResult> Actualizar(int id, ActualizarColoresVehiculoDto modelo)
         {
             await _coloresVehiculoService.Actualizar(id, modelo);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Desactivar(int id)
+        {
+            await _coloresVehiculoService.Desactivar(id);
             return NoContent();
         }
     }
