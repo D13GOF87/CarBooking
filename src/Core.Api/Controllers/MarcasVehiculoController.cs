@@ -16,7 +16,7 @@ namespace Core.Api.Controllers
             _marcasVehiculoService = marcasVehiculo;
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<MarcasVehiculoDto>> GetById(int id)
         {
             return await _marcasVehiculoService.GetById(id);

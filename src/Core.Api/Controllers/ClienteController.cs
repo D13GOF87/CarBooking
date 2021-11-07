@@ -14,7 +14,7 @@ namespace Core.Api.Controllers
         {
             _clientesService = clientes;
         }
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<ClienteDto>> GetById(int id)
         {
             return await _clientesService.GetById(id);
