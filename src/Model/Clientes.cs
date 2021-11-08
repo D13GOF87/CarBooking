@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Model
 {
@@ -20,5 +18,8 @@ namespace Model
         public string email { get; set; }
 
         public int EstadoCliente { get; set; }
+
+        //conexion con reservas
+        public ICollection<Reservas> Reservas { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace Core.Api.Config
 			CreateMap<Agencias, AgenciasDto>();
 			CreateMap<Clientes, ClienteDto>();
 			CreateMap<Vehiculo, VehiculoDto>();
+			CreateMap<Reservas, ReservasDto>();
 
 			//Mapeos para paginación
 			CreateMap<DataCollection<CategoriaVehiculo>, DataCollection<CategoriaVehiculoDto>>();
@@ -25,7 +26,8 @@ namespace Core.Api.Config
 			CreateMap<DataCollection<MarcasVehiculo>, DataCollection<MarcasVehiculoDto>>();			
 			CreateMap<DataCollection<Agencias>, DataCollection<AgenciasDto>>();			
 			CreateMap<DataCollection<Clientes>, DataCollection<ClienteDto>>();			
-			CreateMap<DataCollection<Vehiculo>, DataCollection<VehiculoDto>>();			
+			CreateMap<DataCollection<Vehiculo>, DataCollection<VehiculoDto>>();
+			CreateMap<DataCollection<Reservas>, DataCollection<ReservasDto>>();
 		}
 	}
 }

@@ -40,8 +40,9 @@ namespace Core.Api
 			services.AddTransient<IMarcasVehiculoService, MarcasVehiculoService>();
 			services.AddTransient<IClientesService, ClientesService>();
 			services.AddTransient<IVehiculoService, VehiculoService>();
+			services.AddTransient<IReservaService, ReservasService>();
 
-		
+
 
 
 			services.AddAutoMapper(typeof(Startup));

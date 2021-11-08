@@ -21,6 +21,7 @@ namespace Persistence.Database
 		public DbSet<Agencias> Agencias { get; set; }
 		public DbSet<Clientes> Clientes { get; set; }
 		public DbSet<Vehiculo> Vehiculos { get; set; }
+		public DbSet<Reservas> Reservas { get; set; }
 
 
 		//Sobrecargo el metodo para la creación de las entidades
@@ -36,6 +37,7 @@ namespace Persistence.Database
 			new AgenciasConfig(builder.Entity<Agencias>());
 			new ClientesConfig(builder.Entity<Clientes>());
 			new VehiculoConfig(builder.Entity<Vehiculo>());
+			new ReservasConfig(builder.Entity<Reservas>());
 		}
 	}
 }

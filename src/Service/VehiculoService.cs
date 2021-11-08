@@ -105,7 +105,7 @@ namespace Service
             entry.CapacidadPasajerosVehiculo = modelo.CapacidadPasajerosVehiculo;
             entry.RastreoSatelital = modelo.RastreoSatelital;
             
-            entry.EstadoVehiculos = 1;
+            entry.EstadoVehiculos = modelo.EstadoVehiculos;
 
             entry.IdColorVehiculo = modelo.IdColorVehiculo;
             entry.IdMarcaVehiculo = modelo.IdMarcaVehiculo;
