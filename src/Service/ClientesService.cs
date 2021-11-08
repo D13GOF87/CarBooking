@@ -3,15 +3,19 @@ using Microsoft.EntityFrameworkCore;
 using Model;
 using Model.DTOs;
 using Persistence.Database;
+using Service.Commons;
+using Service.Extensions;
+using System.Linq;
 using System.Threading.Tasks;
-
 namespace Service
 {
     public interface IClientesService
     {
+        Task<DataCollection<ClienteDto>> GetAll(int page, int take);
         Task<ClienteDto> GetById(int id);
         Task<ClienteDto> Crear(CrearClienteDto modelo);
         Task ActualizarCliente(int id, ActualizarClienteDto modelo);
+        Task Desactivar(int id);
     }
     public class ClientesService : IClientesService
     {
@@ -24,21 +28,19 @@ namespace Service
             _mapper = mapper;
         }
 
-        public async Task ActualizarCliente(int id, ActualizarClienteDto modelo)
+        public async Task<DataCollection<ClienteDto>> GetAll(int page, int take)
         {
-            var entry = await _contexto.Clientes.SingleAsync(x => x.IdCliente == id);
-            entry.Identifacion = modelo.Identifacion;
-            entry.NombresCliente = modelo.NombresCliente;
-            entry.ApellidosCliente = modelo.ApellidosCliente;
-            entry.Telefono = modelo.Telefono;
-            entry.Direccion = modelo.Direccion;
-            entry.email = modelo.email;
-            entry.EstadoCliente = modelo.EstadoCliente;
-
-
-            await _contexto.SaveChangesAsync();
+            return _mapper.Map<DataCollection<ClienteDto>>(
+                await _contexto.Clientes.OrderBy(x => x.IdCliente)
+                                    .AsQueryable()
+                                    .PagedAsync(page, take)
+            );
         }
 
+        public async Task<ClienteDto> GetById(int id)
+        {
+            return _mapper.Map<ClienteDto>(await _contexto.Clientes.SingleAsync(x => x.IdCliente == id));
+        }
         public async Task<ClienteDto> Crear(CrearClienteDto modelo)
         {
             var entry = new Clientes
@@ -56,9 +58,28 @@ namespace Service
             return _mapper.Map<ClienteDto>(entry);
         }
 
-        public async Task<ClienteDto> GetById(int id)
+        public async Task ActualizarCliente(int id, ActualizarClienteDto modelo)
         {
-            return _mapper.Map<ClienteDto>(await _contexto.Clientes.SingleAsync(x => x.IdCliente == id));
+            var entry = await _contexto.Clientes.SingleAsync(x => x.IdCliente == id);
+            entry.Identifacion = modelo.Identifacion;
+            entry.NombresCliente = modelo.NombresCliente;
+            entry.ApellidosCliente = modelo.ApellidosCliente;
+            entry.Telefono = modelo.Telefono;
+            entry.Direccion = modelo.Direccion;
+            entry.email = modelo.email;
+            entry.EstadoCliente = modelo.EstadoCliente;
+
+
+            await _contexto.SaveChangesAsync();
         }
+
+        public async Task Desactivar(int id)
+        {
+            var entry = await _contexto.Clientes.SingleAsync(x => x.IdCliente == id);
+            entry.EstadoCliente = 0;
+            await _contexto.SaveChangesAsync();
+        }
+
+
     }
 }

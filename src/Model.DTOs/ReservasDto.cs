@@ -12,9 +12,7 @@ namespace Model.DTOs
         public int EstadoReserva { get; set; }
 
         //fks
-
         public ClienteDto ClientesReservas { get; set; }
-       
         public AgenciasDto AgenciasReservas { get; set; }
 
     }

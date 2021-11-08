@@ -56,4 +56,9 @@ namespace Model.DTOs
         public int EstadoCliente { get; set; }
 
     }
+
+    public class DesactivarClienteDto
+    {
+        public int EstadoCliente { get; set; }
+    }
 }

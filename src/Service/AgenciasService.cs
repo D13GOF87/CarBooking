@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Model;
 using Model.DTOs;
 using Persistence.Database;
+using Service.Commons;
+using Service.Extensions;
+using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -10,9 +13,11 @@ namespace Service
 {
     public interface IAgenciasService
     {
+        Task<DataCollection<AgenciasDto>> GetAll(int page, int take);
         Task<AgenciasDto> GetById(int id);
         Task<AgenciasDto> Crear(CrearAgenciasDto modelo);
         Task Actualizar(int id, ActualizarAgenciasDto modelo);
+        Task Desactivar(int id);
     }
     public class AgenciasService : IAgenciasService
     {
@@ -24,13 +29,18 @@ namespace Service
             _contexto = contexto;
             _mapper = mapper;
         }
-        public async Task Actualizar(int id, ActualizarAgenciasDto modelo)
-        {
-            var entry = await _contexto.Agencias.SingleAsync(x => x.IdAgencia == id);
-            entry.NombreAgencia = modelo.NombreAgencia;
-            entry.EstadoAgencia = modelo.EstadoAgencia;
 
-            await _contexto.SaveChangesAsync();
+        public async Task<DataCollection<AgenciasDto>> GetAll(int page, int take)
+        {
+            return _mapper.Map<DataCollection<AgenciasDto>>(
+                await _contexto.Agencias.OrderBy(x => x.IdAgencia)
+                                    .AsQueryable()
+                                    .PagedAsync(page, take)
+            );
+        }
+        public async Task<AgenciasDto> GetById(int id)
+        {
+            return _mapper.Map<AgenciasDto>(await _contexto.Agencias.SingleAsync(x => x.IdAgencia == id));
         }
 
         public async Task<AgenciasDto> Crear(CrearAgenciasDto modelo)
@@ -45,9 +55,22 @@ namespace Service
             return _mapper.Map<AgenciasDto>(entry);
         }
 
-        public async Task<AgenciasDto> GetById(int id)
+        public async Task Actualizar(int id, ActualizarAgenciasDto modelo)
         {
-            return _mapper.Map<AgenciasDto>(await _contexto.Agencias.SingleAsync(x => x.IdAgencia == id));
+            var entry = await _contexto.Agencias.SingleAsync(x => x.IdAgencia == id);
+            entry.NombreAgencia = modelo.NombreAgencia;
+            entry.EstadoAgencia = modelo.EstadoAgencia;
+
+            await _contexto.SaveChangesAsync();
         }
+
+        public async Task Desactivar(int id)
+        {
+            var entry = await _contexto.Agencias.SingleAsync(x => x.IdAgencia == id);
+            entry.EstadoAgencia = 0;
+            await _contexto.SaveChangesAsync();
+        }
+
+
     }
 }

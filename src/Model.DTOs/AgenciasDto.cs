@@ -28,5 +28,9 @@ namespace Model.DTOs
         public int EstadoAgencia { get; set; }
     }
 
+    public class DesactivarAgenciasDto
+    {
+        public int EstadoAgencia { get; set; }
+    }
 
 }
