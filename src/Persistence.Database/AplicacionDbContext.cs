@@ -38,6 +38,7 @@ namespace Persistence.Database
 			new ClientesConfig(builder.Entity<Clientes>());
 			new VehiculoConfig(builder.Entity<Vehiculo>());
 			new ReservasConfig(builder.Entity<Reservas>());
+			new AutoReservaConfig(builder.Entity<AutoReserva>());
 		}
 	}
 }
