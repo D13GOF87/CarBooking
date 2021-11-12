@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace Model
 {
     public class Vehiculo
@@ -21,9 +22,11 @@ namespace Model
         //fks
         public int IdColorVehiculo { get; set; }
         public ColoresVehiculo ColoresVehiculo { get; set; }
-        public int IdMarcaVehiculo { get; set; }
+           public int IdMarcaVehiculo { get; set; }
         public TipoVehiculo TipoVehiculo { get; set; }
         public int IdTipoVehiculo { get; set; }
-        public MarcasVehiculo MarcasVehiculo{ get; set; }
+        public MarcasVehiculo MarcasVehiculo { get; set; }
+
+        public ICollection<AutoReserva> AutosReserva { get; set; }
     }
 }

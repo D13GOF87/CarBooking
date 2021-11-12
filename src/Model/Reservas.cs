@@ -1,6 +1,5 @@
-﻿
-
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -18,5 +17,6 @@ namespace Model
         public int IdAgencia { get; set; }
         public Agencias AgenciasReservas { get; set; }
 
+        public ICollection<AutoReserva> AutosReserva { get; set; }
     }
 }
