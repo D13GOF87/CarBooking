@@ -14,6 +14,7 @@ namespace Model.DTOs
         //fks
         public ClienteDto ClientesReservas { get; set; }
         public AgenciasDto AgenciasReservas { get; set; }
+        public AutoReservaDto AutosReserva { get; set; }
 
     }
     public class CrearReservaDto
@@ -60,5 +61,25 @@ namespace Model.DTOs
     public class DesactivarReservaDto
     {
         public int EstadoReserva { get; set; }
+    }
+
+    public class CrearAutoreservaDto 
+    {
+        public int IdAutoReserva { get; set; }
+        public int IdVehiculo { get; set; }
+        public int IdReserva { get; set; }
+
+    }
+
+	public class AutoReservaDto 
+	{
+        public int IdAutoReserva { get; set; }
+
+        public int IdVehiculo { get; set; }
+        public VehiculoDto Vehiculo { get; set; }
+
+        public int IdReserva { get; set; }
+
+        public ReservasDto Reserva { get; set; }
     }
 }

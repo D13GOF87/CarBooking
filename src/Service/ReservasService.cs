@@ -41,6 +41,8 @@ namespace Service
                 await _contexto.Reservas.OrderBy(x => x.IdReserva)
                                     .Include(x => x.ClientesReservas)
                                     .Include(x => x.AgenciasReservas)
+                                    .Include(x => x.AutosReserva)
+                                        .ThenInclude(x => x.IdAutoReserva)                                    
                                     .AsQueryable()
                                     .PagedAsync(page, take)
             );
@@ -51,6 +53,8 @@ namespace Service
                 await _contexto.Reservas.OrderBy(x => x.IdReserva)
                                     .Include(x => x.ClientesReservas)
                                     .Include(x => x.AgenciasReservas)
+                                    .Include(x => x.AutosReserva)
+                                        .ThenInclude(x => x.IdAutoReserva)
                                     .AsQueryable()
                                     .SingleAsync(x => x.IdReserva == id)
             );
