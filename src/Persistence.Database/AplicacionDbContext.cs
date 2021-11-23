@@ -1,11 +1,13 @@
 ﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Model;
+using Model.DTOs.Identity;
 using Persistence.Database.Config;
 
 namespace Persistence.Database
 {
-	public class AplicacionDbContext : DbContext
+	public class AplicacionDbContext : IdentityDbContext
 	{
 		public AplicacionDbContext(DbContextOptions<AplicacionDbContext> options) : base(options)
 		{
@@ -39,6 +41,10 @@ namespace Persistence.Database
 			new VehiculoConfig(builder.Entity<Vehiculo>());
 			new ReservasConfig(builder.Entity<Reservas>());
 			new AutoReservaConfig(builder.Entity<AutoReserva>());
+
+			//Configuracion Usuarios
+			new ApplicationUserConfig(builder.Entity<ApplicationUser>());
+			new ApplicationRoleConfig(builder.Entity<ApplicationRole>());
 		}
 	}
 }
